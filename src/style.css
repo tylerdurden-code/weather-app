@@ -1,0 +1,45 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    background-image: url('../img/5b3a05c51e7b6.jpg');
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.appContainer {
+    height: 750px;
+    width: 80%;
+    border: 5px solid green;
+    background-color: rgba(255, 255, 255, .2)
+}
+
+.inputDiv {
+    width: 30%;
+    height: 100%;
+    border: 5px solid green;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+    gap: 10px;
+}
+
+.city {
+    margin-top: -70px;
+}
