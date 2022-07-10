@@ -1,3 +1,4 @@
+import formatTime from './time';
 // fetch('https://api.openweathermap.org/data/2.5/weather?q=athens&appid=7e00ad08f8fb0eb71d45cd175d852c74&units=metric ')
 //   .then((response) => response.json())
 //   .then((data) => {
@@ -12,6 +13,8 @@ const cityHTML = document.querySelector('[data-city]');
 const degreesHTML = document.querySelector('[data-degrees]');
 const descriptionHTML = document.querySelector('[data-description]');
 const dateHTML = document.querySelector('[data-date]');
+const inputBtn = document.querySelector('[data-input-btn]');
+const iconHTML = document.querySelector('[data-icon]');
 function capitalizeFirstLetter(str) {
   const words = str.split(' ');
 
@@ -21,12 +24,19 @@ function capitalizeFirstLetter(str) {
 
   return words.join(' ');
 }
-function displayWeather(city, temperature, date, time, description) {
+async function getIcon(iconCode) {
+  const respone = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`);
+  return respone.url;
+}
+async function displayWeather(city, temperature, date, time, description, icon) {
+  const iconUrl = await getIcon(icon);
   cityHTML.textContent = city;
   degreesHTML.textContent = `${temperature} °C`;
   descriptionHTML.textContent = capitalizeFirstLetter(description);
-  dateHTML.textContent = `${date} ${time}`;
+  dateHTML.textContent = `${date}`;
+  iconHTML.src = iconUrl;
 }
+
 async function fetchWeather(city) {
   try {
     const respone = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric `);
@@ -35,13 +45,20 @@ async function fetchWeather(city) {
     const cityName = data.name;
     const myDate = new Date(data.dt * 1000);
     const dateString = myDate.toDateString();
-    const timeString = myDate.toLocaleTimeString();
+    const timeString = myDate;
     const { temp } = data.main;
-    console.log(data, temp);
-    displayWeather(cityName, temp, dateString, timeString, weatherDescription);
+    const { icon } = data.weather[0];
+    console.log(data);
+    displayWeather(cityName, temp, dateString, timeString, weatherDescription, icon);
   } catch (err) {
     console.log('Cannot find the city/country');
   }
 }
+inputBtn.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    fetchWeather(inputBtn.value);
+    inputBtn.value = '';
+  }
+});
 
-fetchWeather('London');
+fetchWeather('New York');
