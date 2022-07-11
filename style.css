@@ -7,7 +7,7 @@
 }
 
 .container {
-    background-image: url('../img/5b3a05c51e7b6.jpg');
+    background-image: url('5b3a05c51e7b6.jpg');
     min-height: 100vh;
     display: flex;
     justify-content: center;
