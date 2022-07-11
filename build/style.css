@@ -1,0 +1,149 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    background-image: url('../img/5b3a05c51e7b6.jpg');
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.appContainer {
+    height: 750px;
+    width: 80%;
+    background-color: rgba(255, 255, 255, .2);
+    display: flex;
+    border-radius: 10px;
+}
+
+.inputDiv {
+    width: 400px;
+    height: 100%;
+    border: 2px solid black;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    padding: 5px;
+    position: relative;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+    gap: 10px;
+    margin-bottom: 100px;
+    margin-top: -60px;
+}
+
+.city {
+    margin-top: -70px;
+    height: 200px;
+    font-size: 3rem
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.input>input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    padding: 5px;
+    width: 200px;
+}
+
+.input>input:focus {
+    outline: none;
+}
+
+#svgSearch {
+    position: absolute;
+    right: 1px;
+}
+
+/* .humidityDiv {
+    grid-column: 1/ span 2;
+}
+
+.pressureDiv {
+    grid-column: 2/ span 3;
+} */
+
+.weatherStats {
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-template-rows: 80px auto 80px;
+    column-gap: 15px;
+    row-gap: 15px;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.stats {}
+
+.loader {
+    background-color: rgba(0, 0, 0, .1);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.ring {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    animation: ring .7s linear infinite;
+}
+
+@keyframes ring {
+    0% {
+        transform: rotate(0deg);
+        box-shadow: 1px 5px 2px lightskyblue;
+    }
+
+    50% {
+        transform: rotate(180deg);
+        box-shadow: 1px 5px 2px lightblue;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        box-shadow: 1px 5px 2px lightblue;
+    }
+}
+
+.ring:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(255, 255, 255, .1);
+    border-radius: 50%;
+}
+
+.error-message {
+    position: absolute;
+    font-size: .8rem;
+    top: 25px;
+    left: 5px;
+    color: red;
+}
